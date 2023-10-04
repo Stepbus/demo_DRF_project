@@ -18,5 +18,7 @@ python manage.py runserver & celery -A Main_app worker --loglevel=info
 OR:
 
 in two different terminals:
+
 python manage.py runserver
+
 celery -A Main_app worker --loglevel=info
