@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Check Detail</title>
+</head>
+<body>
+    <h1>Check Detail</h1>
+
+    <table border="1">
+        <tr>
+            <th>Field</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>Printer</td>
+            <td>{{ check.printer.name }}</td>
+        </tr>
+        <tr>
+            <td>Type</td>
+            <td>{{ check.type }}</td>
+        </tr>
+        <tr>
+            <td>Order</td>
+            <td>{{ check.order|safe }}</td>
+        </tr>
+        <tr>
+            <td>Status</td>
+            <td>{{ check.status }}</td>
+        </tr>
+        </table>
+</body>
+</html>

@@ -1,0 +1,32 @@
+version: '3.7'
+services:
+    postgres:
+        container_name: postgres-fish
+        image: postgres
+        hostname: postgres-fish
+        restart: always
+        environment:
+          - POSTGRES_DB=${POSTGRES_DB}
+          - POSTGRES_USER=${POSTGRES_USER}
+          - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+        ports:
+          - "${POSTGRES_PORT}:5432"
+        volumes:
+          - postgres-data:/var/lib/postgresql/data
+
+    wkhtmltopdf:
+      container_name: wkhtmltopdf-service
+      image: openlabs/docker-wkhtmltopdf-aas
+      ports:
+        - "${WKHTMLTOPDF_PORT}:80"
+
+    redis:
+      container_name: celery-redis
+      image: redis:latest
+      restart: always
+      command: redis-server --save '' --dbfilename '' --appendonly no --appendfsync no --replica-read-only no
+      ports:
+        - "${REDIS_PORT}:6379"
+
+volumes:
+  postgres-data:

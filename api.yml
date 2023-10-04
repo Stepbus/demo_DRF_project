@@ -1,0 +1,79 @@
+openapi: "3.0.0"
+info:
+  version: "1.0.0"
+  title: Order and Printer API
+  description: API for handling orders and printers
+paths:
+  /new-order:
+    post:
+      summary: Create a new order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewOrder'
+      responses:
+        '201':
+          description: Successfully created a new order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewOrderResponse'
+        '400':
+          description: Invalid JSON
+        '500':
+          description: Server error
+  /printer/{api_key}:
+    get:
+      summary: Check printer by API key
+      parameters:
+        - name: api_key
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved printer information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrinterResponse'
+        '404':
+          description: Printer not found
+components:
+  schemas:
+    NewOrder:
+      type: object
+      properties:
+        order:
+          type: object
+          properties:
+            order_id:
+              type: integer
+            product:
+              type: array
+              items:
+                type: object
+                properties:
+                  product1:
+                    type: string
+                  product2:
+                    type: string
+        point_id:
+          type: integer
+    NewOrderResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        order:
+          $ref: '#/components/schemas/NewOrder'
+    PrinterResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string

@@ -1,0 +1,38 @@
+[
+    {
+        "model": "service_app.printer",
+        "fields": {
+            "name": "Kitchen Printer 1",
+            "api_key": "api_key_1",
+            "check_type": "kitchen",
+            "point_id": 1234
+        }
+    },
+    {
+        "model": "service_app.printer",
+        "fields": {
+            "name": "Client Printer 1",
+            "api_key": "api_key_2",
+            "check_type": "client",
+            "point_id": 1234
+        }
+    },
+    {
+        "model": "service_app.printer",
+        "fields": {
+            "name": "Kitchen Printer 2",
+            "api_key": "api_key_3",
+            "check_type": "kitchen",
+            "point_id": 5678
+        }
+    },
+    {
+        "model": "service_app.printer",
+        "fields": {
+            "name": "Client Printer 2",
+            "api_key": "api_key_4",
+            "check_type": "client",
+            "point_id": 5678
+        }
+    }
+]
