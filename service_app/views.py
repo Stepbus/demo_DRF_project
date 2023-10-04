@@ -2,6 +2,7 @@ import json
 
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
 from service_app.models import Check, Printer
 from service_app.tasks import create_pdf
@@ -13,7 +14,8 @@ In a real project, I think this data should come from a Django form or via a jso
 
 
 @csrf_exempt
-def new_order(request):
+@require_POST
+def new_order(request) -> JsonResponse:
     """
     order should be as follows:
         {
@@ -56,10 +58,10 @@ def new_order(request):
         return JsonResponse({"status": "Success!", **order}, status=201)
 
     else:
-        return HttpResponseBadRequest("Only POST method is allowed")
+        return JsonResponse({"status": "Failed", "error": "Only POST method is allowed"}, status=400)
 
 
-def printer_checker(request, api_key):
+def printer_checker(request, api_key) -> JsonResponse:
     printer = Printer.printer_manager.get(api_key=api_key)
     if not printer:
         return JsonResponse({"status": "Failed", "error": f"No printer found with the given ID {api_key}."}, status=404)
