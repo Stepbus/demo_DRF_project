@@ -12,7 +12,9 @@ If orders for this branch have already been created, an error
 is returned (the order number is passed).
 
 Two endpoints:
+
 post: creation of a new order and asynchronous creation of a pdf file
+
 get: a list of orders that have already been generated for a specific 
 printer is requested, after which a PDF file for each order is downloaded 
 and sent to print (the "status" field in the order is changed)
