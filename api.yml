@@ -1,79 +1,26 @@
-openapi: "3.0.0"
-info:
-  version: "1.0.0"
-  title: Order and Printer API
-  description: API for handling orders and printers
-paths:
-  /new-order:
-    post:
-      summary: Create a new order
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/NewOrder'
-      responses:
-        '201':
-          description: Successfully created a new order
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NewOrderResponse'
-        '400':
-          description: Invalid JSON
-        '500':
-          description: Server error
-  /printer/{api_key}:
-    get:
-      summary: Check printer by API key
-      parameters:
-        - name: api_key
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successfully retrieved printer information
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PrinterResponse'
-        '404':
-          description: Printer not found
-components:
-  schemas:
-    NewOrder:
-      type: object
-      properties:
-        order:
-          type: object
-          properties:
-            order_id:
-              type: integer
-            product:
-              type: array
-              items:
-                type: object
-                properties:
-                  product1:
-                    type: string
-                  product2:
-                    type: string
-        point_id:
-          type: integer
-    NewOrderResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        order:
-          $ref: '#/components/schemas/NewOrder'
-    PrinterResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        message:
-          type: string
+{ "swagger": "2.0", "info":
+  { "title": "Swagger API",
+    "description": "SWAGGER documentation",
+    "version": "v1"
+  },
+  "host": "localhost:8000",
+  "schemes": [ "http" ],
+  "basePath": "/",
+  "consumes": [ "application/json" ],
+  "produces": [ "application/json" ],
+  "securityDefinitions": { "Basic": { "type": "basic" } }, "security": [ { "Basic": [ ] } ],
+  "paths": { "/new-order":
+               { "post": { "operationId": "new-order_create",
+                           "description": "order should be as follows:\n    {\n    \"order\":\n        {\n            \"order_id\": 9999,\n            \"product\":\n                [\n                {\"product1\": \"product1\",\n                \"product2\": \"product2\"}\n                ]\n        },\n    \"point_id\": 1234\n    }",
+                           "parameters": [ ],
+                           "responses": { "201": { "description": "" } },
+                           "tags": [ "new-order" ] },
+                 "parameters": [ ] },
+             "/printer/{api_key}":
+               { "get": { "operationId": "printer_read",
+                          "description": "",
+                          "parameters": [ ],
+                          "responses": { "200": { "description": "" } },
+                          "tags": [ "printer" ] },
+                 "parameters": [ { "name": "api_key", "in": "path", "required": true, "type": "string" } ] } },
+  "definitions": { } }
